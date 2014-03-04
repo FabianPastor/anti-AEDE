@@ -4,7 +4,7 @@
 // @version     1.0.4.5
 // @description  marcar en rojo
 // @include     *
-// @updateURL   https://raw.github.com/pykiss/anti-AEDE/master/script.user.js
+// @updateURL   https://raw.github.com/FabianPastor/anti-AEDE/master/script.user.js
 // @copyright   Antonio Fernández Porrúa. Pau Capó. Licencia     GPL
 // @require     http://code.jquery.com/jquery-1.11.0.min.js
 // @require     http://pykiss.github.io/anti-AEDE/javascripts/jquery.minicolors.js
