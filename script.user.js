@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name       anti AEDE
 // @namespace   http://www.meneame.net/
-// @version     1.0.4.6
-// @description  marcar en rojo
+// @version     1.0.4.6.1
+// @description Marca en rojo los enlaces que estan en AEDE.
 // @include     *
 // @updateURL   https://raw.github.com/FabianPastor/anti-AEDE/master/script.user.js
 // @copyright   Antonio Fernández Porrúa. Pau Capó. Licencia     GPL
@@ -553,8 +553,7 @@ $(function () {
            firstime=false;
          }
          $('.comment-body>a').each(function(i){
-            var title = $(this).attr('href'),
-               element = $(this).parent();
+            var title = $(this).attr('href'), element = $(this).parent();
             preCheckAEDE(element, title, i);
           });
       
@@ -562,8 +561,7 @@ $(function () {
       twitter = function () {
          // Twitter by @Hanxxs http://pastebin.com/f04tPcsG
          $('a.twitter-timeline-link').not('.aede-on').each(function (i) {
-            var title = this.title,
-               element = $(this).parents('.stream-item');
+            var title = this.title, element = $(this).parents('.stream-item');
             preCheckAEDE(element, title, i);
             $(this).addClass('aede-on');
          });
@@ -571,32 +569,28 @@ $(function () {
       facebook = function () {
          // Facebook by @paucapo
          $('div.fsm').not('.aede-on').each(function (i) {
-            var title = $(this).text(),
-               element = $(this).parents('a.shareLink');
+            var title = $(this).text(), element = $(this).parents('a.shareLink');
             preCheckAEDE(element, title, i, {
                border: '3px solid ' + GM_getValue('background')
             });
             $(this).addClass('aede-on');
          });
          $('.userContent a').not('.aede-on').each(function (i) {
-            var title = $(this).text(),
-               element = $(this);
+            var title = $(this).text(), element = $(this);
             preCheckAEDE(element, title, i, {
                border: '3px solid ' + GM_getValue('background')
             });
             $(this).addClass('aede-on');
          });
          $('div.userContentWrapper div.fcg').not('.aede-on').each(function (i) {
-            var title = $(this).text(),
-               element = $(this).parents('div.mvm');
+            var title = $(this).text(), element = $(this).parents('div.mvm');
             preCheckAEDE(element, title, i, {
                display: 'block',
             });
             $(this).addClass('aede-on');
          });
          $('div.storyInnerWrapper span.caption').not('.aede-on').each(function (i) {
-            var title = $(this).text(),
-               element = $(this).parents('div.shareRedesignContainer');
+            var title = $(this).text(), element = $(this).parents('div.shareRedesignContainer');
             preCheckAEDE(element, title, i);
             $(this).addClass('aede-on');
          });
@@ -604,8 +598,7 @@ $(function () {
       google = function () {
          // Google by @paucapo
          $('a').not('.aede-on').each(function (i) {
-            var title = $(this).attr('href'),
-               element = $(this).parents('li.g');
+            var title = $(this).attr('href'), element = $(this).parents('li.g');
             preCheckAEDE(element, title, i);
             $(this).addClass('aede-on');
          });
@@ -613,15 +606,14 @@ $(function () {
       others = function () {
          // Others by @paucapo
          $('a').not('.aede-on').each(function (i) {
-            var title = $(this).attr('href') + ' ' + $(this).text(),
-               element = $(this);
+            var title = $(this).attr('href') + ' ' + $(this).text(), element = $(this);
             preCheckAEDE(element, title, i);
             $(this).addClass('aede-on');
          });
       },
 
-      checkForAEDELinks = function () {
-      
+      checkForAEDELinks = function () 
+      {
          switch(domain()){
             case 'meneame.net':
                GM_getValue('meneame') && meneame();
@@ -639,7 +631,8 @@ $(function () {
             break;
          }
       },
-      preCheckAEDE = function (element, url, i, extraCss) {
+      preCheckAEDE = function (element, url, i, extraCss)
+      {
          if(url === undefined){
             return;
          }
@@ -647,7 +640,8 @@ $(function () {
             checkAEDE(element, url, extraCss);
          }, i * 20);
       },
-      checkAEDE = function (element, link, extraCss) {
+      checkAEDE = function (element, link, extraCss) 
+      {
          css = {
             'background-color': GM_getValue('background'),
             'background-image': 'linear-gradient(0deg, '+GM_getValue('background_gradient')+','+GM_getValue('background')+')',
@@ -662,19 +656,23 @@ $(function () {
                .on('mouseenter', showTooltip).on('mouseleave', hideTooltip);
          }
       },
-      showTooltip = function () {
+      showTooltip = function () 
+      {
          tooltip = $('<span id="aede-tooltip" style="position: absolute;background:' + GM_getValue('tooltip_background') + ';color:' + GM_getValue('tooltip_text') + ';padding:5px;border-radius:4px;z-index:100000">AEDE alert!</span>'),
          $('body').append(tooltip);
       },
-      hideTooltip = function () {
+      hideTooltip = function () 
+      {
          tooltip.remove();
          tooltip = false;
       },
-      domain = function () {
+      domain = function () 
+      {
          var parts = document.domain.split('.');
          return parts.slice(-2).join('.');
       },
-      isAEDE = function (link) {
+      isAEDE = function (link) 
+      {
          var is = false;
          $.each(aede, function (i, a) {
             if(a.test(link)){
@@ -685,7 +683,8 @@ $(function () {
          return is;
       },
 
-      aedeConfig = function () {
+      aedeConfig = function () 
+      {
          $('#aede_config').remove();
 
          var config = '<div id="aede_config">';
@@ -713,7 +712,8 @@ $(function () {
 
          $('#main_content').append(config);
 
-         $('input.color').each( function() {
+         $('input.color').each( function() 
+         {
             $(this).minicolors({
                control: 'hue',
                defaultValue: '',
@@ -726,7 +726,8 @@ $(function () {
          });
 
 
-         $('#aede_reset').on('click', function () {
+         $('#aede_reset').on('click', function () 
+         {
             resetConfig();
             aedeConfig();
             resultConfig('¡Configuración a valores por defecto!');
