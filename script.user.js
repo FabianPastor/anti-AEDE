@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       anti AEDE
 // @namespace   http://www.meneame.net/
-// @version     2.0.0.2
+// @version     2.0.0.3
 // @description Marca en rojo los enlaces que estan en AEDE.
 // @include     *
 // @updateURL   https://raw.github.com/FabianPastor/anti-AEDE/master/script.user.js
@@ -17,7 +17,7 @@
 
 $(function () {
 
-  var contador=0;
+  var contador=1;
   var checklinksinterval;
   
   
@@ -41,11 +41,12 @@ $(function () {
     firsTime();
     
     checkForLinks(regexps);
-
+	$("body").append('<div id="fabi_cont" style="background-color:rgba(255, 0, 0, 0.30);z-index:999999999999;position:fixed;top:2px;right:2px;width:40px;height:40px;text-align:center;" >0</div>')
     checklinksinterval=setInterval(function(){
       checkForLinks(regexps);
+      $("#fabi_cont")[0].innerHTML=contador;
       if(contador++>GM_getValue('number_iterations'))
-        cleatInterval(checklinksinterval);
+        clearInterval(checklinksinterval);
     }, GM_getValue('time2checklinks'));
 
   },
