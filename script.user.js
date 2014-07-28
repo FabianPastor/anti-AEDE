@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       anti AEDE
 // @namespace   http://www.meneame.net/
-// @version     2.0.0.1
+// @version     2.0.0.2
 // @description Marca en rojo los enlaces que estan en AEDE.
 // @include     *
 // @updateURL   https://raw.github.com/FabianPastor/anti-AEDE/master/script.user.js
@@ -255,7 +255,7 @@ $(function () {
      google: 'Google (sólo funciona en google.es, se tiene que solucionar)',
      others: 'Todas las páginas',
     number_iterations: 'Nº comprobaciones',
-    time2checklinks: 'Tiempo entre comprobaciones',
+    time2checklinks: 'Tiempo entre comprobaciones(en ms)',
   },
   general_types = {
      background: 'color',
