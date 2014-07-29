@@ -41,7 +41,7 @@ $(function () {
     firsTime();
     
     checkForLinks(regexps);
-	  $("body").append('<div id="fabi_cont" style="background-color:rgba(255, 0, 0, 0.30);z-index:2147483647;position:fixed;bottom:2px;left:2px;width:40px;height:20px;text-align:center;" >0</div>');
+	  $("body").append('<div id="fabi_cont" style="background-color:rgba(0, 255, 0, 0.30);z-index:2147483647;position:fixed;bottom:2px;left:2px;width:40px;height:20px;text-align:center;" >0</div>');
     fabi=$("#fabi_cont");
     
     checklinksinterval=setInterval(function(){
@@ -49,12 +49,12 @@ $(function () {
       fabi[0].innerHTML=contador;
       if(contador++>GM_getValue('number_iterations')){
         clearInterval(checklinksinterval);
-        fabi[0].style.backgroundColor="rgba(0, 255, 0, 0.30)";
+        fabi[0].style.backgroundColor="rgba(255, 0, 0, 0.30)";
       }
     }, GM_getValue('time2checklinks'));
     fabi.click(function(){
       clearInterval(checklinksinterval);
-      $(this)[0].style.backgroundColor="rgba(0, 255, 0, 0.30)";
+      $(this)[0].style.backgroundColor="rgba(255, 0, 0, 0.30)";
     });
 
   },
